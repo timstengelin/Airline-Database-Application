@@ -1,3 +1,3 @@
 import mysql
 
-print('test')
+print('test2')
