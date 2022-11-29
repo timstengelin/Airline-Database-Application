@@ -1,7 +1,7 @@
 import mysql.connector
 from mysql.connector import errorcode
 
-nameDatabase = 'test13'
+nameDatabase = 'airlinedatabase'
 
 
 def initDB():
