@@ -1,32 +1,19 @@
 import mysql.connector
 from mysql.connector import errorcode
 
-db = mysql.connector.connect(
-    host='localhost',
-    user='root',
-    passwd='root',
-    database='airlinedatabase'
-)
+import initDatabase
 
-cursor = db.cursor()
-
-# createDb()
-
-cursor.execute('show databases')
-for i in cursor:
-    print(i)
+initDatabase.initDB()
 
 
-def createDB():
-    cnx = mysql.connector.connect(
-        host='localhost',
-        user='root',
-        passwd='root',
-    )
 
-    cursor = cnx.cursor()
 
-    cursor.execute('create database airlineDatabase')
+
+
+
+
+
+
 
 
 def createConnectionToDB():
