@@ -1,7 +1,7 @@
 import mysql.connector
 from mysql.connector import errorcode
 
-nameDatabase = 'airlinedatabase'
+nameDB = 'airlinedatabase'
 
 
 def initDB():
@@ -16,12 +16,12 @@ def connectToDB():
     cursor = cnx.cursor()
 
     try:
-        cursor.execute('USE {}'.format(nameDatabase))
-        print('>> database \'{}\' already existing'.format(nameDatabase))
+        cursor.execute('USE {}'.format(nameDB))
+        print('>> database \'{}\' already existing'.format(nameDB))
     except mysql.connector.Error as err:
         if err.errno == errorcode.ER_BAD_DB_ERROR:
             createDB(cursor)
-            cnx.database = nameDatabase
+            cnx.database = nameDB
             createTables(cursor)
         else:
             print(err)
@@ -33,8 +33,8 @@ def connectToDB():
 
 def createDB(cursor):
     try:
-        cursor.execute('CREATE DATABASE {}'.format(nameDatabase))
-        print('>> database \'{}\' created'.format(nameDatabase))
+        cursor.execute('CREATE DATABASE {}'.format(nameDB))
+        print('>> database \'{}\' created'.format(nameDB))
     except mysql.connector.Error as err:
         print(err)
         exit(1)
