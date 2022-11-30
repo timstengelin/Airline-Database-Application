@@ -89,6 +89,25 @@ tables['aircraft'] = (
         'PRIMARY KEY (aircraft_registration_code)'
     ');'
 )
+tables['can_land'] = (
+    'CREATE TABLE can_land ('
+        'airport_code char(3) NOT NULL,'
+        'aircraft_registration_code char(5) NOT NULL,'
+        'PRIMARY KEY (airport_code, aircraft_registration_code),'
+        'FOREIGN KEY (airport_code) REFERENCES airport (airport_code) ON DELETE CASCADE,'
+        'FOREIGN KEY (aircraft_registration_code) REFERENCES aircraft (aircraft_registration_code) ON DELETE CASCADE'
+    ');'
+)
+tables['seat'] = (
+    'CREATE TABLE seat ('
+        'seat_number char(4) NOT NULL,'
+        'aircraft_registration_code char(5) NOT NULL,'
+        'class enum(\'economics\',\'business\',\'first\') NOT NULL,'
+        'extra_price_factor numeric(3,2) NOT NULL,'
+        'PRIMARY KEY (seat_number, aircraft_registration_code),'
+        'FOREIGN KEY (aircraft_registration_code) REFERENCES aircraft (aircraft_registration_code) ON DELETE CASCADE'
+    ');'
+)
 tables['flight'] = (
     'CREATE TABLE flight ('
         'flight_number int(6) ZEROFILL NOT NULL AUTO_INCREMENT,'
@@ -106,22 +125,12 @@ tables['flight'] = (
         'FOREIGN KEY (aircraft_registration_code) REFERENCES aircraft (aircraft_registration_code) ON DELETE CASCADE'
     ');'
 )
-tables['seat'] = (
-    'CREATE TABLE seat ('
-        'seat_number char(5) NOT NULL,'
-        'aircraft_registration_code char(5) NOT NULL,'
-        'class enum(\'economic\',\'business\',\'first\') NOT NULL,'
-        'extra_price_factor numeric(3,2) NOT NULL,'
-        'PRIMARY KEY (seat_number, aircraft_registration_code),'
-        'FOREIGN KEY (aircraft_registration_code) REFERENCES aircraft (aircraft_registration_code) ON DELETE CASCADE'
-    ');'
-)
 tables['flight_ticket'] = (
     'CREATE TABLE flight_ticket ('
         'booking_number int(6) ZEROFILL NOT NULL AUTO_INCREMENT,'
         'username varchar(10) NOT NULL,'
         'flight_number int(6) ZEROFILL NOT NULL,'
-        'seat_number char(5) NOT NULL,'
+        'seat_number char(4) NOT NULL,'
         'PRIMARY KEY (booking_number),'
         'FOREIGN KEY (username) REFERENCES customer (username) ON DELETE CASCADE,'
         'FOREIGN KEY (flight_number) REFERENCES flight (flight_number) ON DELETE CASCADE,'
@@ -144,14 +153,5 @@ tables['animal_luggage'] = (
         'animal_species varchar(10) NOT NULL,'
         'PRIMARY KEY (luggage_number),'
         'FOREIGN KEY (booking_number) REFERENCES flight_ticket (booking_number) ON DELETE CASCADE'
-    ');'
-)
-tables['can_land'] = (
-    'CREATE TABLE can_land ('
-        'airport_code char(3) NOT NULL,'
-        'aircraft_registration_code char(5) NOT NULL,'
-        'PRIMARY KEY (airport_code, aircraft_registration_code),'
-        'FOREIGN KEY (airport_code) REFERENCES airport (airport_code) ON DELETE CASCADE,'
-        'FOREIGN KEY (aircraft_registration_code) REFERENCES aircraft (aircraft_registration_code) ON DELETE CASCADE'
     ');'
 )
