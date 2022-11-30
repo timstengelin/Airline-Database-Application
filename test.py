@@ -8,8 +8,10 @@ print(test['a'])
 
 
 a = {}
-a['aa'] = 'AA'
-a['bb'] = 'BB'
+a[0] = 'AA'
+a[1] = 'BB'
 
 for i in a:
-    print(i)
+    print(a[i])
+
+

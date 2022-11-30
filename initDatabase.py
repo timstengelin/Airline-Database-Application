@@ -1,7 +1,7 @@
 import mysql.connector
 from mysql.connector import errorcode
 
-nameDB = 'airlinedatabase'
+nameDB = 'testdb1'
 
 
 def initDB():
@@ -75,9 +75,9 @@ tables['mobile_number'] = (
 tables['airport'] = (
     'CREATE TABLE airport ('
         'airport_code char(3) NOT NULL,'
-        'name varchar(10) NOT NULL,'
-        'city varchar(10) NOT NULL,'
-        'country varchar(10) NOT NULL,'
+        'name varchar(30) NOT NULL,'
+        'city varchar(30) NOT NULL,'
+        'country varchar(30) NOT NULL,'
         'PRIMARY KEY (airport_code)'
     ');'
 )
