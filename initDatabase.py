@@ -1,7 +1,8 @@
 import mysql.connector
 from mysql.connector import errorcode
+import populateDatabase
 
-nameDB = 'testdb1'
+nameDB = 'airline_db'
 
 
 def initDB():
@@ -23,6 +24,7 @@ def connectToDB():
             createDB(cursor)
             cnx.database = nameDB
             createTables(cursor)
+            populateDatabase.populateDB()
         else:
             print(err)
             exit(1)
